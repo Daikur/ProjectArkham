@@ -8,14 +8,12 @@ $(document).ready(function() {
         success: function (data){
             $.each(data, function (i){
                 console.log(data[i]);
+                console.log(data[i].name);
             });
 
 
 
         }
-
-
-
     });
 
 
