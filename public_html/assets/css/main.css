@@ -1,0 +1,14 @@
+.footer{
+    background-image:url(../images/background.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    font-family: Roboto-Thin Helvetica;
+    
+}
+
+.footer-separator{
+    border-left: 1px solid #4d4d4d;
+}
+
+
