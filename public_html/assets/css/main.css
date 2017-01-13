@@ -8,7 +8,20 @@
 }
 
 .footer-separator{
-    border-left: 1px solid #4d4d4d;
+    border-left: 1px solid white;
+}
+
+.my-account-item{
+    padding-left: 50px;
+    color: white; 
+}
+
+.icon-product-container{
+    padding-top:40%;
+    padding-left: 20px;
+}
+.icon-product-button{
+    padding-left:20px;
 }
 
 
