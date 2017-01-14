@@ -58,37 +58,4 @@ window.onload = function ()
 
 
 
-    function f2() {
-        micarrito.mostrar();
-    }
-    function f3() {
-        alert(micarrito);
-        alert(JSON.stringify(micarrito));
-    }
-
-
-// ----- añadimos eventos -----
-    function On_click() {
-
-    }
-    fotos = document.getElementsByTagName('img');
-    for (var i = 0; i < fotos.length; i++) {
-        fotos[i].addEventListener("click", On_click, false);
-
-    }
-
-
-    Array.prototype.indexOf = function (objeto) {
-        var resultado = -1;
-        for (var i = 0; i < this.length; i++) {
-            if (this[i] == objeto) {
-                resultado = i;
-                break;
-            }
-        }
-        return resultado;
-        
-    }
-    
-
 }
