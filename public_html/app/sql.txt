@@ -1,8 +1,0 @@
-create database armonic;
-use armonic;
-
-CREATE TABLE `armonic`.`Categorias` ( `idCategoria` INT(11) NOT NULL AUTO_INCREMENT , `Nombre` VARCHAR(45) NOT NULL , `Descripcion` VARCHAR(45) NOT NULL , PRIMARY KEY (`idCategoria`)) ENGINE = InnoDB;
-
-INSERT INTO `categorias` (`idCategoria`, `Nombre`, `Descripcion`) VALUES (NULL, 'Orquestas', 'Categoría que engloba todas las orquestas'), (NULL, 'Charangas', 'Categoría que engloba todas las charangas'), (NULL, 'DJs', 'Categoria que engloba todos los djs');
-
-CREATE TABLE `armonic`.`images` ( `idImg` INT(11) NOT NULL AUTO_INCREMENT , `src` VARCHAR(100) NOT NULL , PRIMARY KEY (`idImg`)) ENGINE = InnoDB;

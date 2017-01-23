@@ -1,12 +1,5 @@
 $(document).ready(function () {
 
-    var listaProductos = [];
-    var listadoArticulos = [];
-    micarrito = new Carrito('daw');
-
-    micarrito.articulos = listaProductos;
-
-
     function getParameterByName(name, url) {
         if (!url) {
             url = window.location.href;
@@ -30,9 +23,6 @@ $(document).ready(function () {
         url: 'http://localhost/slim/api.php/productos/' + categoria,
         success: function (data) {
             $.each(data, function (index, value) {
-                articulo = new Articulo(value.id, value.nombre, value.descripcion, value.precio, value.idCategoria);
-                console.log(articulo);
-                listadoArticulos.push(articulo);
                 $(`<div class='col s3 offset-s1'>
                    <div class='card z-depth-5 '>
                         <div clas='card-image waves-effect waves-red'>
@@ -56,6 +46,10 @@ $(document).ready(function () {
     });
     
     
+
+
+
+
 
 
     $('.modal').modal();

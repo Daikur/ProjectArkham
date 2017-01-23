@@ -1,23 +1,20 @@
-$(document).ready(function() {
-            
+$(document).ready(function () {
 
-    
     $.ajax({
         dataType: 'json',
         type: 'GET',
         url: 'http://localhost/slim/api.php/categorias',
-        success: function (data){
+        success: function (data) {
             $.each(data, function (index, value) {
                 console.log(value.nombre);
-                
-                $("<li class='waves-effect waves-red'><a href='./productos.html?id="+value.id+"'><span>"+value.nombre+"</span></a></li>").appendTo("#categorias");
-                $("<li class='waves-effect waves-red'><a href='./productos.html?id="+value.id+"'>"+value.nombre+"</a></li>").appendTo("#nav-mobile");
+
+                $("<li class='waves-effect waves-red'><a href='./productos.html?id=" + value.id + "'><span>" + value.nombre + "</span></a></li>").appendTo("#categorias");
+                $("<li class='waves-effect waves-red'><a href='./productos.html?id=" + value.id + "'>" + value.nombre + "</a></li>").appendTo("#nav-mobile");
             });
         }
     });
-    
-    
-        $.ajax({
+
+    $.ajax({
         dataType: 'json',
         type: 'GET',
         url: 'http://localhost/slim/api.php/ofertas',
@@ -29,27 +26,24 @@ $(document).ready(function() {
 
             });
 
- $(document).ready(function(){
-      $('.slider').slider({full_width: true});
-    });
+            $(document).ready(function () {
+                $('.slider').slider({full_width: true});
+            });
 
 
-    // Pause slider
-    $('.slider').slider('pause');
+            // Pause slider
+            $('.slider').slider('pause');
 // Start slider
-    $('.slider').slider('start');
+            $('.slider').slider('start');
 // Next slide
-    $('.slider').slider('next');
+            $('.slider').slider('next');
 // Previous slide
-    $('.slider').slider('prev');
-
-
-
+            $('.slider').slider('prev');
         }
-       
     });
-     $('.modal').modal();
-        $('.modal').modal({
+
+    $('.modal').modal();
+    $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .10, // Opacity of modal background
         in_duration: 300, // Transition in duration
