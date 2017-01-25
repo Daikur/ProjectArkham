@@ -1,12 +1,5 @@
 $(document).ready(function () {
 
-    var listaProductos = [];
-    var listadoArticulos = [];
-    micarrito = new Carrito('daw');
-
-    micarrito.articulos = listaProductos;
-
-
     function getParameterByName(name, url) {
         if (!url) {
             url = window.location.href;
@@ -23,39 +16,61 @@ $(document).ready(function () {
 
     var categoria = getParameterByName('id');
 
-
     $.ajax({
         dataType: 'json',
         type: 'GET',
         url: 'http://localhost/slim/api.php/productos/' + categoria,
         success: function (data) {
-            $.each(data, function (index, value) {
-                articulo = new Articulo(value.id, value.nombre, value.descripcion, value.precio, value.idCategoria);
-                console.log(articulo);
-                listadoArticulos.push(articulo);
+            $.each(data, function () {
+
+                producto = new Producto(this.id, this.nombre, this.descripcion, this.precio, this.idCategoria);
+
                 $(`<div class='col s3 offset-s1'>
                    <div class='card z-depth-5 '>
                         <div clas='card-image waves-effect waves-red'>
-                            <img width='100%' class='activator' src='assets/images/` + value.imagenes + `'>
+                            <img width='100%' class='activator' src='assets/images/` + this.imagenes + `'>
                         </div>
                         <div class='card-content'>
-                            <span class='card-title activator grey-text text-darken-4'>` + value.nombre + "  - " + value.precio + "€" + `<i class='material-icons right'>more_vert</i></span>
+                            <span class='card-title activator grey-text text-darken-4'>` + this.nombre + "  - " + this.precio + "€" + `<i class='material-icons right'>more_vert</i></span>
                         </div>
                         <div class='card-reveal'>
-                            <span class='card-title grey-text text-darken-4'>` + value.descripcion + `<i class='material-icons right'>close</i></span>
+                            <span class='card-title grey-text text-darken-4'>` + this.descripcion + `<i class='material-icons right'>close</i></span>
                             <div class='icon-product-container'>
                             <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
-                            <a class='btn-floating red bproducto' id=` + value.id + ` href='#modal-carrito'><i class='material-icons'>shopping_cart</i></a>
-                            </div>
+                            <a class='btn-floating red bproducto' id=` + 'p' + this.id + ` p=` + producto + ` href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
+                        </div>
                         </div>
                     </div>
-                    </div>
+                    </div>                
                  `).appendTo('#productos');
+
+                //$('#p' + this.id).on("click", cargaModal(producto));
+                $("#productos ")
+                $('#p' + this.id).on("click", function () {
+                    console.log("idProducto: " + this.p);
+                    $(`<div class="modal-content id=` + this.id + `">
+                        <h4>` + this.nombre + `</h4>
+                        <p>` + this.descripcion + `</p>
+                     </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+                        <a href="#!" producto=` + this + ` class="modal-action modal-close waves-effect waves-green btn-flat ">Añadir al Carrito</a>
+                </div>`).appendTo('#modal-compra');
+                });
+
             });
         }
     });
-    
-    
+
+    function cargaModal(producto) {
+
+    }
+
+
+
+
+
+
 
 
     $('.modal').modal();

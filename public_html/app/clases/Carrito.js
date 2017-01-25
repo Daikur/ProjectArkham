@@ -1,30 +1,16 @@
-// ---------------------------- CLASE ARTICULOS --------------------
-
-function Articulo(id, nombre, descripcion, precio, idCategoria) {
-    this.id = id;
-    this.nombre = nombre;
-    this.descripcion = descripcion;
-    this.precio = precio;
-    this.idCategoria = idCategoria;
-}
-
-
 //----------------------------- CLASE CARRITO ---------------
-
 function Carrito( cliente) {
     this.cliente = cliente;
     this.articulos = [];
     this.total = 0;
 }
 
-Carrito.prototype.anyade = function (articuloId)
+Carrito.prototype.anyade = function (productoId)
 {
-    this.articulos.push(this.listadoArticulos[articuloId]);
-    console.log(this.listadoArticulos[articuloId]);
-    
+    this.articulos.push(this.listadoArticulos[productoId]);
+    console.log(this.listadoArticulos[productoId]);
     
 };
-
 
 Carrito.prototype.mostrar = function ()
 {
@@ -56,6 +42,4 @@ window.onload = function ()
 
     micarrito = new Carrito();
 
-
-
-}
+};
