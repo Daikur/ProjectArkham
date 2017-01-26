@@ -1,14 +1,16 @@
 //----------------------------- CLASE CARRITO ---------------
-function Carrito( cliente) {
+function Carrito(cliente) {
     this.cliente = cliente;
     this.articulos = [];
     this.total = 0;
 }
 
-Carrito.prototype.anyade = function (productoId)
+Carrito.prototype.anyade = function (producto)
 {
-    this.articulos.push(this.listadoArticulos[productoId]);
-    console.log(this.listadoArticulos[productoId]);
+    //this.articulos.push(this.listadoArticulos[productoId]);
+    this.articulos.push(producto);
+    //console.log("articulo en array: "+this.listadoArticulos[productoId]);
+    console.log("articulo en array: "+this.articulos);
     
 };
 
