@@ -1,3 +1,14 @@
+var product = {
+    id: "",
+    name: "",
+    precio: "",
+    idCategoria: "",
+    descripcion: ""
+};
+
+
+
+
 $(document).ready(function () {
     carrito = new Carrito("armonic");
     function getParameterByName(name, url) {
@@ -15,13 +26,22 @@ $(document).ready(function () {
     }
 
     var categoria = getParameterByName('id');
+    var listaProductos = [];
     $.ajax({
         dataType: 'json',
         type: 'GET',
         url: 'http://localhost/slim/api.php/productos/' + categoria,
         success: function (data) {
             $.each(data, function () {
-                producto = new Producto(this.id, this.nombre, this.descripcion, this.precio, this.idCategoria);
+                product = {
+                    id: this.id,
+                    name: this.nombre,
+                    precio: this.precio,
+                    idCategoria: this.idCategoria,
+                    descripcion: this.descripcion
+                };
+                listaProductos.push(product);
+
                 $(`<div class='col s3 offset-s1'>
                    <div class='card z-depth-5 '>
                         <div clas='card-image waves-effect waves-red'>
@@ -40,8 +60,12 @@ $(document).ready(function () {
                     </div>
                     </div>
                  `).appendTo('#productos');
-                document.getElementById(this.id).setAttribute("precio",this.precio);
+
+
             });
+            console.log(listaProductos);
+
+
         }
     });
     $('.modal').modal();
@@ -94,7 +118,7 @@ $('.datepicker').pickadate({
 $(`<div class="modal-content">
                     <h4>Carrito</h4>
                     <div id='carrito'>`);
-$.each(carrito.articulos, function (index,value) {
+$.each(carrito.articulos, function (index, value) {
     `<p>` + value.id + `<p>`
 }`
                     </div>
