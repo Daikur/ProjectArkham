@@ -1,15 +1,17 @@
 var product = {
     id: "",
-    name: "",
+    nombre: "",
     precio: "",
     idCategoria: "",
     descripcion: ""
 };
-
+var listaProductos;
+var carrito;
 
 
 
 $(document).ready(function () {
+    listaProductos = [];
     carrito = new Carrito("armonic");
     function getParameterByName(name, url) {
         if (!url) {
@@ -26,7 +28,7 @@ $(document).ready(function () {
     }
 
     var categoria = getParameterByName('id');
-    var listaProductos = [];
+
     $.ajax({
         dataType: 'json',
         type: 'GET',
@@ -35,7 +37,7 @@ $(document).ready(function () {
             $.each(data, function () {
                 product = {
                     id: this.id,
-                    name: this.nombre,
+                    nombre: this.nombre,
                     precio: this.precio,
                     idCategoria: this.idCategoria,
                     descripcion: this.descripcion
@@ -54,7 +56,7 @@ $(document).ready(function () {
                             <span class='card-title grey-text text-darken-4'>` + this.descripcion + `<i class='material-icons right'>close</i></span>
                             <div class='icon-product-container'>
                             <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
-                            <a class='btn-floating red bproducto' id=` + this.id + ` name=` + this.nombre + ` idCat=` + this.idCategoria + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
+                            <a class='btn-floating red bproducto' id=` + this.id + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
                         </div>
                         </div>
                     </div>
@@ -68,7 +70,6 @@ $(document).ready(function () {
 
         }
     });
-    $('.modal').modal();
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
         opacity: .10, // Opacity of modal background
@@ -90,24 +91,41 @@ $(document).ready(function () {
         }
     });
 });
+
+
 function cargaModal(p) {
     console.log('id:' + p.id);
-    console.log('nombre:' + p.name);
-    console.log('precio:' + p.precio);
-    console.log('idCategoria:' + p.idCat);
-    producto = new Producto(p.id, p.name, p.descripcion, p.precio, p.idCat);
+    var producto = new Producto();
+    listaProductos;
+    for (var i = 0; i < listaProductos.length; i++) {
+        if (p.id === listaProductos[i].id) {
+            console.log(listaProductos[i]);
+            producto.id = listaProductos[i].id;
+            producto.nombre = listaProductos[i].nombre;
+            producto.descripcion = listaProductos[i].descripcion;
+            producto.precio = listaProductos[i].precio;
+            producto.idCategoria = listaProductos[i].idCategoria;
+            break;
+        }
+    }
+    //Borrar el contenido del modal antes de añadirlo
+    var myNode = document.getElementById("modal-compra");
+    myNode.innerHTML = '';
+
     $(`<div class="modal-content">
-      <h4>` + producto.name + `</h4>
+      <h4>` + producto.nombre + `</h4>
       <p>A bunch of text</p>
       <p>Seleccione una fecha: </p><input type="date" class="datepicker">
       <p>Precio: ` + producto.precio + `</p>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-      <a href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick= carrito.anyade(producto)>Añadir al Carrito</a>
+      <a href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick= carrito.anyade(`+producto+`)>Añadir al Carrito</a>
     </div>
   </div>`).appendTo('#modal-compra');
 }
+
+
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -115,15 +133,5 @@ $('.datepicker').pickadate({
 });
 
 
-$(`<div class="modal-content">
-                    <h4>Carrito</h4>
-                    <div id='carrito'>`);
-$.each(carrito.articulos, function (index, value) {
-    `<p>` + value.id + `<p>`
-}`
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Realizar Pago</a>
-                </div>
-            </div>`).appendTo("#modal-carrito");
+    
+
