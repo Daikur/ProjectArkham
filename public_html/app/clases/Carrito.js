@@ -5,13 +5,11 @@ function Carrito(cliente) {
     this.total = 0;
 }
 
-Carrito.prototype.anyade = function (producto)
-{
-    //this.articulos.push(this.listadoArticulos[productoId]);
+Carrito.prototype.anyade = function (producto){
     this.articulos.push(producto);
-    //console.log("articulo en array: "+this.listadoArticulos[productoId]);
-    console.log("articulo en array: "+this.articulos);
-    
+    console.log("ESTOS SON LOS ARTICULICOS:" +this.articulos)
+
+ 
 };
 
 Carrito.prototype.mostrar = function ()
