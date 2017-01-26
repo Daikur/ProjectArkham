@@ -1,6 +1,5 @@
 $(document).ready(function () {
- var listaProducto;
- 
+    carrito = new Carrito("armonic");
     function getParameterByName(name, url) {
         if (!url) {
             url = window.location.href;
@@ -16,13 +15,13 @@ $(document).ready(function () {
     }
 
     var categoria = getParameterByName('id');
-
     $.ajax({
         dataType: 'json',
         type: 'GET',
         url: 'http://localhost/slim/api.php/productos/' + categoria,
         success: function (data) {
             $.each(data, function () {
+                producto = new Producto(this.id, this.nombre, this.descripcion, this.precio, this.idCategoria);
                 $(`<div class='col s3 offset-s1'>
                    <div class='card z-depth-5 '>
                         <div clas='card-image waves-effect waves-red'>
@@ -35,18 +34,16 @@ $(document).ready(function () {
                             <span class='card-title grey-text text-darken-4'>` + this.descripcion + `<i class='material-icons right'>close</i></span>
                             <div class='icon-product-container'>
                             <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
-                            <a class='btn-floating red bproducto' p=`+data+` id=` + 'p' + this.id + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
+                            <a class='btn-floating red bproducto' id=` + this.id + ` name=` + this.nombre + ` idCat=` + this.idCategoria + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
                         </div>
                         </div>
                     </div>
-                    </div>                
+                    </div>
                  `).appendTo('#productos');
-                
+                document.getElementById(this.id).setAttribute("precio",this.precio);
             });
-             
         }
     });
-
     $('.modal').modal();
     $('.modal').modal({
         dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -61,7 +58,6 @@ $(document).ready(function () {
         complete: function () {
         }
     });
-
     $('input.autocomplete').autocomplete({
         data: {
             "Apple": null,
@@ -69,11 +65,41 @@ $(document).ready(function () {
             "Google": 'http://placehold.it/250x250'
         }
     });
+});
+function cargaModal(p) {
+    console.log('id:' + p.id);
+    console.log('nombre:' + p.name);
+    console.log('precio:' + p.precio);
+    console.log('idCategoria:' + p.idCat);
+    producto = new Producto(p.id, p.name, p.descripcion, p.precio, p.idCat);
+    $(`<div class="modal-content">
+      <h4>` + producto.name + `</h4>
+      <p>A bunch of text</p>
+      <p>Seleccione una fecha: </p><input type="date" class="datepicker">
+      <p>Precio: ` + producto.precio + `</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+      <a href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick= carrito.anyade(producto)>Añadir al Carrito</a>
+    </div>
+  </div>`).appendTo('#modal-compra');
+}
 
-
-
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
 });
 
-function cargaModal(producto) {
-        console.log('id:'+producto.p);
-    }
+
+$(`<div class="modal-content">
+                    <h4>Carrito</h4>
+                    <div id='carrito'>`);
+$.each(carrito.articulos, function (index,value) {
+    `<p>` + value.id + `<p>`
+}`
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Realizar Pago</a>
+                </div>
+            </div>`).appendTo("#modal-carrito");
