@@ -3,7 +3,8 @@ var product = {
     nombre: "",
     precio: "",
     idCategoria: "",
-    descripcion: ""
+    descripcion: "",
+    fecha: ""
 };
 var listaProductos;
 var carrito;
@@ -105,6 +106,7 @@ function cargaModal(p) {
             producto.descripcion = listaProductos[i].descripcion;
             producto.precio = listaProductos[i].precio;
             producto.idCategoria = listaProductos[i].idCategoria;
+            producto.fecha = new Date();
             break;
         }
     }
@@ -116,13 +118,15 @@ function cargaModal(p) {
       <h4>` + producto.nombre + `</h4>
       <p>A bunch of text</p>
       <p>Seleccione una fecha: </p><input type="date" class="datepicker">
-      <p>Precio: ` + producto.precio + `</p>
+      <p>Precio: `+ producto.precio + `</p>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-      <a href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick= carrito.anyade(`+producto+`)>Añadir al Carrito</a>
+      <a id="botonCompra" href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick=carrito.anyade(this) >Añadir al Carrito</a>
     </div>
   </div>`).appendTo('#modal-compra');
+    
+    $('#botonCompra').data('producto',  producto );
 }
 
 

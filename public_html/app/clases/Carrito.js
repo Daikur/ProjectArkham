@@ -1,34 +1,51 @@
 //----------------------------- CLASE CARRITO ---------------
 function Carrito(cliente) {
     this.cliente = cliente;
-    this.articulos = [];
+    this.listaProductosCarrito = [];
     this.total = 0;
 }
 
-Carrito.prototype.anyade = function (producto){
-    this.articulos.push(producto);
-    console.log("ESTOS SON LOS ARTICULICOS:" +this.articulos)
-
+Carrito.prototype.anyade = function (product){
+    console.log("PRODUCTO RECIEN HORNEADO:");
+    console.log(($.data(product,'producto')));
+    
+    productoAnyadido = $.data(product, "producto");
+    
+    this.listaProductosCarrito.push($.data(product,'producto'));
+    console.log(this.listaProductosCarrito);
+    //TODO change the style of the <p>
+    $(`<div style='padding-bottom: 20px' id=container-linea-carrito><p style='float:left; padding-right:20px'>`+ productoAnyadido.nombre +`  -  `+productoAnyadido.id+`  -  `+productoAnyadido.fecha+ ` -  `+productoAnyadido.precio +`€</p>`+`
+        <a class='btn-floating red bproducto' id='botonBorrar' onclick= carrito.eliminarProductoCarrito(this)  
+          '><i class='material-icons'>delete</i></a><div>`).appendTo(`#carrito`);
+    
+        $('#botonBorrar').data('producto',  productoAnyadido );
+    
  
 };
 
-Carrito.prototype.mostrar = function ()
+Carrito.prototype.eliminarProductoCarrito = function (product)
 {
-    for(i = 0; i < this.articulos.length; i++){
-        ticket += this.articulos[i].id + '\n';
+        productoAnyadido = $.data(product, "producto");
+
+    for (var i = 0; i < this.listaProductosCarrito.length; i++) {
+        if (this.listaProductosCarrito[i].id === productoAnyadido.id){
+            this.listaProductosCarrito.splice(i);
+            break;
+        }
+        console.log(this.listaProductosCarrito);
+        $('div').remove('#container-linea-carrito');
+        
     }
-    
-    ticket += "total carrito: " + this.totalCarrito() + "€";
-    return ticket;
+
 };
 
 Carrito.prototype.totalCarrito = function()
 {
     tot = 0;
     
-    for(i = 0 ; i < this.articulos.length; i++) 
+    for(i = 0 ; i < this.listaProductosCarrito.length; i++) 
     {
-        tot = tot + parseInt(this.articulos[i].precio);
+        tot = tot + parseInt(this.listaProductosCarrito[i].precio);
     }
     this.total = tot;
     return tot;
