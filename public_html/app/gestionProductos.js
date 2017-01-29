@@ -36,39 +36,8 @@ $(document).ready(function () {
         url: 'http://localhost/slim/api.php/productos/' + categoria,
         success: function (data) {
             $.each(data, function () {
-                product = {
-                    id: this.id,
-                    nombre: this.nombre,
-                    precio: this.precio,
-                    idCategoria: this.idCategoria,
-                    descripcion: this.descripcion
-                };
-                listaProductos.push(product);
-
-                $(`<div class='col s3 offset-s1'>
-                   <div class='card z-depth-5 '>
-                        <div clas='card-image waves-effect waves-red'>
-                            <img width='100%' class='activator' src='assets/images/` + this.imagenes + `'>
-                        </div>
-                        <div class='card-content'>
-                            <span class='card-title activator grey-text text-darken-4'>` + this.nombre + "  - " + this.precio + "€" + `<i class='material-icons right'>more_vert</i></span>
-                        </div>
-                        <div class='card-reveal'>
-                            <span class='card-title grey-text text-darken-4'>` + this.descripcion + `<i class='material-icons right'>close</i></span>
-                            <div class='icon-product-container'>
-                            <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
-                            <a class='btn-floating red bproducto' id=` + this.id + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                 `).appendTo('#productos');
-
-
+                getProductos(this);
             });
-            console.log(listaProductos);
-
-
         }
     });
     $('.modal').modal({
@@ -93,40 +62,73 @@ $(document).ready(function () {
     });
 });
 
+function getProductos(producto) {
+    console.log("Esto es una prueba:" + producto.id);
+    $(`<div class='col s3 offset-s1'>
+                   <div class='card z-depth-5 '>
+                        <div clas='card-image waves-effect waves-red'>
+                            <img width='100%' class='activator' src='assets/images/` + producto.imagenes + `'>
+                        </div>
+                        <div class='card-content'>
+                            <span class='card-title activator grey-text text-darken-4'>` + producto.nombre + "  - " + producto.precio + "€" + `<i class='material-icons right'>more_vert</i></span>
+                        </div>
+                        <div class='card-reveal'>
+                            <span class='card-title grey-text text-darken-4'>` + producto.descripcion + `<i class='material-icons right'>close</i></span>
+                            <div class='icon-product-container'>
+                            <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
+                            <a class='btn-floating red bproducto' id=` + producto.id + ` href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                 `).appendTo('#productos');
 
-function cargaModal(p) {
-    console.log('id:' + p.id);
-    var producto = new Producto();
-    listaProductos;
-    for (var i = 0; i < listaProductos.length; i++) {
-        if (p.id === listaProductos[i].id) {
-            console.log(listaProductos[i]);
-            producto.id = listaProductos[i].id;
-            producto.nombre = listaProductos[i].nombre;
-            producto.descripcion = listaProductos[i].descripcion;
-            producto.precio = listaProductos[i].precio;
-            producto.idCategoria = listaProductos[i].idCategoria;
-            producto.fecha = new Date();
-            break;
-        }
-    }
-    //Borrar el contenido del modal antes de añadirlo
-    var myNode = document.getElementById("modal-compra");
-    myNode.innerHTML = '';
 
-    $(`<div class="modal-content">
-      <h4>` + producto.nombre + `</h4>
-      <p>A bunch of text</p>
-      <p>Seleccione una fecha: </p><input type="date" class="datepicker">
-      <p>Precio: `+ producto.precio + `</p>
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
-      <a id="botonCompra" href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick=carrito.anyade(this) >Añadir al Carrito</a>
-    </div>
-  </div>`).appendTo('#modal-compra');
-    
-    $('#botonCompra').data('producto',  producto );
+    $('.bproducto').on("click", function () {
+        console.log(event.data);
+    });
+
+}
+
+
+
+
+function cargaModal(event) {
+    console.log("hola");
+    alert("Hola" + event.data.id);
+//    console.log("HOLA ESTO ES CARGAMODAL:"+p.id);
+//    console.log('id:' + p.id);
+//    var producto = new Producto();
+//    listaProductos;
+//    for (var i = 0; i < listaProductos.length; i++) {
+//        if (p.id === listaProductos[i].id) {
+//            console.log(listaProductos[i]);
+//            producto.id = listaProductos[i].id;
+//            producto.nombre = listaProductos[i].nombre;
+//            producto.descripcion = listaProductos[i].descripcion;
+//            producto.precio = listaProductos[i].precio;
+//            producto.idCategoria = listaProductos[i].idCategoria;
+//            producto.fecha = new Date();
+//            break;
+//        }
+//    }
+//    //Borrar el contenido del modal antes de añadirlo
+//    var myNode = document.getElementById("modal-compra");
+//    myNode.innerHTML = '';
+//
+//    $(`<div class="modal-content">
+//      <h4>` + producto.nombre + `</h4>
+//      <p>A bunch of text</p>
+//      <p>Seleccione una fecha: </p><input type="date" class="datepicker">
+//      <p>Precio: `+ producto.precio + `</p>
+//    </div>
+//    <div class="modal-footer">
+//      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat ">Cancelar</a>
+//      <a id="botonCompra" href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick=carrito.anyade(this) >Añadir al Carrito</a>
+//    </div>
+//  </div>`).appendTo('#modal-compra');
+//    
+//    $('#botonCompra').data('producto',  producto );
 }
 
 
