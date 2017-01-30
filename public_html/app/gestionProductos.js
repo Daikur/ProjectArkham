@@ -57,7 +57,7 @@ $(document).ready(function () {
                             <span class='card-title grey-text text-darken-4'>` + this.descripcion + `<i class='material-icons right'>close</i></span>
                             <div class='icon-product-container'>
                             <a class='btn-floating red' href='#'><i class='material-icons'>visibility</i></a>
-                            <a class='btn-floating red bproducto' id=` + this.id + ` onclick= cargaModal(this)  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
+                            <a class='btn-floating red bproducto' id=` + this.id + ` onclick= cargaModal(getProductoFromId(` + this.id + `))  href='#modal-compra'><i class='material-icons'>shopping_cart</i></a>
                         </div>
                         </div>
                     </div>
@@ -93,23 +93,22 @@ $(document).ready(function () {
     });
 });
 
+function getProductoFromId(id) {
+    for (var i = 0; i < listaProductos.length; i++) {
+        if (id === listaProductos[i].id) {
+            return listaProductos[i];
+        }
+    }
+                                  
+    return null;
+}
+
 
 function cargaModal(p) {
     console.log('id:' + p.id);
     var producto = new Producto();
     listaProductos;
-    for (var i = 0; i < listaProductos.length; i++) {
-        if (p.id === listaProductos[i].id) {
-            console.log(listaProductos[i]);
-            producto.id = listaProductos[i].id;
-            producto.nombre = listaProductos[i].nombre;
-            producto.descripcion = listaProductos[i].descripcion;
-            producto.precio = listaProductos[i].precio;
-            producto.idCategoria = listaProductos[i].idCategoria;
-            producto.fecha = new Date();
-            break;
-        }
-    }
+
     //Borrar el contenido del modal antes de añadirlo
     var myNode = document.getElementById("modal-compra");
     myNode.innerHTML = '';
