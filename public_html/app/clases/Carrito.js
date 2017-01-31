@@ -6,7 +6,7 @@ function Carrito(cliente) {
 }
 
 Carrito.prototype.anyade = function (product) {
-    console.log("PRODUCTO RECIEN HORNEADO:");
+    console.log("PRODUCTO AÑADIDO AL CARRITO:");
     console.log(($.data(product, 'producto')));
 
     productoAnyadido = $.data(product, "producto");
@@ -14,7 +14,7 @@ Carrito.prototype.anyade = function (product) {
     this.listaProductosCarrito.push($.data(product, 'producto'));
     console.log(this.listaProductosCarrito);
     //TODO change the style of the <p>
-    $(`<div style='padding-bottom: 20px' id=container-linea-carrito><p style='float:left; padding-right:20px'>` + productoAnyadido.nombre + `  -  ` + productoAnyadido.id + `  -  ` + productoAnyadido.fecha + ` -  ` + productoAnyadido.precio + `€</p>` + `
+    $(`<div style='padding-bottom: 20px' id=container-linea-carrito><p style='float:left; padding-right:20px'><strong>` + productoAnyadido.nombre + `</strong>  -  ` + productoAnyadido.id + `  -  ` + productoAnyadido.fecha + ` -  ` + productoAnyadido.precio + `€</p>` + `
         <a class='btn-floating red bproducto' id='botonBorrar' onclick= carrito.eliminarProductoCarrito(this)  
           '><i class='material-icons'>delete</i></a><div>`).appendTo(`#carrito`);
 
@@ -26,7 +26,7 @@ Carrito.prototype.anyade = function (product) {
 Carrito.prototype.eliminarProductoCarrito = function (product)
 {
     productoAnyadido = $.data(product, "producto");
-
+    alert(productoAnyadido.id);
     for (var i = 0; i < this.listaProductosCarrito.length; i++) {
         if (this.listaProductosCarrito[i].id === productoAnyadido.id) {
             this.listaProductosCarrito.splice(i);
