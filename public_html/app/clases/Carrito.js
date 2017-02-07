@@ -12,6 +12,7 @@ Carrito.prototype.anyade = function (product) {
     productoAnyadido = $.data(product, "producto");
 
     this.listaProductosCarrito.push($.data(product, 'producto'));
+
     console.log(this.listaProductosCarrito);
     //TODO change the style of the <p>
     $(`<div style='padding-bottom: 20px' id=container-linea-carrito><p style='float:left; padding-right:20px'><strong>` + productoAnyadido.nombre + `</strong>  -  ` + productoAnyadido.id + `  -  ` + productoAnyadido.fecha + ` -  ` + productoAnyadido.precio + `€</p>` + `
@@ -55,15 +56,16 @@ Carrito.prototype.totalCarrito = function ()
 //---------------------Post Pedidos y detallepedidos----------------------------
 Carrito.prototype.realizarPago = function () {
     pedido = new Pedido(1, "2016/01/27");
+    fecha = "2016/01/27";
+    //this.listaProductosPedido.push({idPedido: pedido.id});
 
-    
     listaPedido = JSON.stringify(this.listaProductosCarrito);
-
+    console.log(listaPedido);
     $.ajax({
         dataType: 'json',
         type: 'POST',
-        data: {pedido: listaPedido},
-        url: 'http://localhost/slim/api.php/pedidos',
+        data: {listaCarrito: this.listaProductosCarrito, usuario: 1, idPedido: 0, fecha: fecha},
+        url: 'app/pedidos.php',
         success: function () {
             console.log("detallepedido creado");
         }
