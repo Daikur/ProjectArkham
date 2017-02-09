@@ -1,4 +1,9 @@
-<?php ?>
+<?php 
+   session_start();
+   
+   $_SESSION['usuario']=$user;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -18,27 +23,29 @@
                 <div>
                     <div class="col s12 m4 offset-m4">
                         <div class="card card-login red lighten-5">
-                            <div class="card-content card-header white-text">
-                                <div class=" card-header">
+                            <div class="card-content row white-text">
+                                <div class="col m12">
+                                <div class=" offset-m4 col m6">
                                     <div class="">
                                         <img class="center-align " src="assets/images/armonic_logo.png" alt="" width="150" height="100"/>
-                                        <p>Bienvenido a Armonic</p>
+                                        <p class="title">Bienvenido a Armonic</p>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                             <div class="card-action">
                                 <div class="row">
                                     <div class="input-field col s12">
 
                                         <input id="icon_prefix" type="text" class="validate ">
-                                        <label for="icon_prefix"><i class="tiny material-icons prefix">account_circle</i><span class="input-login">Usuario</span></label>
+                                        <label for="icon_prefix"><i class="tiny material-icons prefix">account_circle</i><span class="login-input">Usuario</span></label>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
 
                                         <input id="icon_prefix" type="text" class="validate">
-                                        <label for="icon_prefix"><i class="tiny material-icons prefix">lock</i><span class="input-login"> Contraseña</span></label>
+                                        <label for="icon_prefix"><i class="tiny material-icons prefix">lock</i><span class="login-input"> Contraseña</span></label>
                                     </div>
                                 </div>
 
