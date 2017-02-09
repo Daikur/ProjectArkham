@@ -2,10 +2,10 @@
 session_start();
 
 
-$error=''; //variable para recoger los errores
+$error=' '; //variable para recoger los errores
 if(isset($_POST['submit'])){
     if(empty($_POST['user']) || empty($_POST['pass'])){
-        $error = "USERNAME OR PASSWORD IS INVALID";
+        $error = "";
     }else{
         
         $user=$_POST['user'];

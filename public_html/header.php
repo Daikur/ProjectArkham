@@ -6,7 +6,7 @@
         </a>
 
         <ul class="right hide-on-med-and-down">
-            <li class="my-account-item"><span style="color:black" class="user-text">Bienvenido  <?php echo $_SESSION['username'] ?></span><a class="waves-effect waves-light material-icons" href="."><i class="material-icons white-text">account_circle</i></a></li>
+            <li class="my-account-item"><span style="color:black" class="user-text">Bienvenido  <?php echo $_SESSION['username'] ?></span><a class="waves-effect waves-light material-icons" href="login.php"><i class="material-icons white-text">account_circle</i></a></li>
             <li class='my-logout-item'><a class="waves-effect waves-light material-icons" href="./logout.php">input</a></li>
             <li class='my-cart-item'><a class="waves-effect waves-light material-icons" href="#modal-carrito">shopping_basket</a></li>
 

@@ -49,12 +49,13 @@ include("loginserv.php");
                                     </div>
                                 </div>
                                 <div class="center-align">
-                                    <input type="submit" value="Login" name="submit">
+                                    <input class="btn btn-large red waves-effect waves-light"type="submit" value="Login" name="submit">
                                 </div>
                                </form>
+                                <span class="text-lighten-5 card-title center-align"><?php echo $error ?></span>
                             </div>
                             <?php
-                                echo $_SESSION['username'];
+                               
                             ?>
                         </div>
                     </div>
