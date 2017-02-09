@@ -11,13 +11,7 @@
     border-left: 1px solid white;
 }
 
-.my-account-item{
-    padding-left: 50px;
-    color: white; 
-}
-.my-cart-item{
-    margin-right: -60px;
-}
+
 .icon-product-container{
     padding-top:40%;
     padding-left: 20px;
@@ -28,6 +22,11 @@
 
 .product-cart{
     width: 500px;
+}
+
+
+.user-text{
+    color: #000 !important;
 }
 
 

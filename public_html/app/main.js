@@ -8,8 +8,8 @@ $(document).ready(function () {
             $.each(data, function (index, value) {
                 console.log(value.nombre);
 
-                $("<li class='waves-effect waves-red'><a href='./productos.html?id=" + value.id + "'><span>" + value.nombre + "</span></a></li>").appendTo("#categorias");
-                $("<li class='waves-effect waves-red'><a href='./productos.html?id=" + value.id + "'>" + value.nombre + "</a></li>").appendTo("#nav-mobile");
+                $("<li class='waves-effect waves-red'><a href='./productos.php?id=" + value.id + "'><span>" + value.nombre + "</span></a></li>").appendTo("#categorias");
+                $("<li class='waves-effect waves-red'><a href='./productos.php?id=" + value.id + "'>" + value.nombre + "</a></li>").appendTo("#nav-mobile");
             });
         }
     });
