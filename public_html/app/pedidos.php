@@ -1,12 +1,13 @@
 <?php
 
+include '../loginserv.php';
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "armonic";
 
 $listaProductos = json_decode($_GET['listaCarrito']);
-$usuario = $_GET['usuario'];
+$usuario = $_SESSION['username'];
 $fecha = $_GET['fecha'];
 
 // Create connection
@@ -16,20 +17,23 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "INSERT INTO Pedidos (idCliente, fecha) VALUES ($usuario,$fecha);";
+$sql = "select id from userpass where user = $usuario;";
+$idUsuario = $conn->query($sql);
+
+
+$sql = "INSERT INTO Pedidos (idCliente, fecha) VALUES ($idUsuario,$fecha);";
 if ($conn->query($sql) === TRUE) {
-    $resultado = "Su pedido ha sido procesado.";
+    echo "Su pedido ha sido procesado.";
 } else {
-    $resultado = "Error al procesar su pedido.";
+    echo "Error al procesar su pedido.";
 }
 
 $peticionIdPedido = "SELECT MAX(idPedido) from pedidos";
 $idPedido = $conn->query($peticionIdPedido);
 
-//echo $idPedido;
 //$idPed = inval($idPedido,10);
 //$idPedido = $idPedido + 1;
-//
+
 $seguir = true;
 foreach ($listaProductos as $producto) {
     $idProducto = $producto->id;
@@ -40,8 +44,8 @@ foreach ($listaProductos as $producto) {
         $resultado = "Su detallepedido ha sido procesado.";
     } else {
         $resultado = "Error al procesar su detallepedido.";
-        //$sql = "DELETE From pedidos where idPedido=$idPedido";
-        //$conn->query($sql);
+        $sql = "DELETE From pedidos where idPedido=$idPedido";
+        $conn->query($sql);
         $seguir = false;
     }
 }
