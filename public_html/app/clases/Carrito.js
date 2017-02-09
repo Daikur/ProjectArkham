@@ -10,7 +10,7 @@ Carrito.prototype.anyade = function (product) {
     console.log(($.data(product, 'producto')));
 
     productoAnyadido = $.data(product, "producto");
-
+   
     this.listaProductosCarrito.push($.data(product, 'producto'));
 
     console.log(this.listaProductosCarrito);
@@ -55,12 +55,17 @@ Carrito.prototype.totalCarrito = function ()
 //                 v----cambiar a gestionProductos----v
 //---------------------Post Pedidos y detallepedidos----------------------------
 Carrito.prototype.realizarPago = function () {
-    pedido = new Pedido(1, "2016/01/27");
-    fecha = "2016/01/27";
+    pedido = new Pedido(1);
+    var dateObj = new Date();
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+
+    fecha = year + "-" + month + "-" + day;
     //this.listaProductosPedido.push({idPedido: pedido.id});
 
     listaPedido = JSON.stringify(this.listaProductosCarrito);
-    console.log(listaPedido);
+    console.log(this.listaProductosCarrito);
     $.ajax({
         dataType: 'json',
         type: 'POST',
