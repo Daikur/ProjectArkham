@@ -66,10 +66,11 @@ Carrito.prototype.realizarPago = function () {
 
     listaPedido = JSON.stringify(this.listaProductosCarrito);
     console.log(this.listaProductosCarrito);
+    console.log(listaPedido);
     $.ajax({
         dataType: 'json',
-        type: 'POST',
-        data: {listaCarrito: this.listaProductosCarrito, usuario: 1, idPedido: 0, fecha: fecha},
+        //type: 'POST',
+        data: {listaCarrito: listaPedido, usuario: 1, fecha: fecha},
         url: 'app/pedidos.php',
         success: function () {
             console.log("detallepedido creado");
