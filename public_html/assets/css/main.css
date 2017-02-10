@@ -1,3 +1,8 @@
+nav ul a, nav .brand-logo{
+    color:white
+}
+
+
 .footer{
     background-image:url(../images/background.png);
     background-repeat: no-repeat;
@@ -5,6 +10,11 @@
     
     font-family: Roboto-Thin Helvetica;
     
+}
+
+.header-background{
+     background:url(../images/background.png) left top no-repeat ;
+    background-size: 1920px 500px;
 }
 
 .footer-separator{
@@ -26,7 +36,9 @@
 
 
 .user-text{
-    color: #000 !important;
+    color: white !important;
 }
+
+
 
 

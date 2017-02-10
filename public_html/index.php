@@ -16,9 +16,8 @@ include("loginserv.php");
     </head>
     <body>
         <?php include("header.php")?>
-<!--       
         <div class="slider">
-            <ul id="slider" class="slides">
+            <ul id="slider" class="slides white">
 
             </ul>
         </div>
@@ -26,11 +25,10 @@ include("loginserv.php");
         <div class="container">
             <div class="section">
 
-                <!--   Icon Section   -->
                 <div class="row">
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center teal-text darken-4"><i class="material-icons">flash_on</i></h2>
+                            <h2 class="center red-text darken-4"><i class="material-icons">flash_on</i></h2>
                             <h5 class="center">Rapidez en la gestion</h5>
 
                             <p class="light">De forma sencilla y agil conseguiras contratar tus servicios sin perder un segundo</p>
@@ -39,7 +37,7 @@ include("loginserv.php");
 
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center teal-text darken-4 "><i class="material-icons">group</i></h2>
+                            <h2 class="center red-text darken-4 "><i class="material-icons">group</i></h2>
                             <h5 class="center">Multitud de opciones</h5>
 
                             <p class="light">Disfruta de nuestro amplio catalogo de bandas, charangas, orquestas...</p>
@@ -48,7 +46,7 @@ include("loginserv.php");
 
                     <div class="col s12 m4">
                         <div class="icon-block">
-                            <h2 class="center teal-text darken-4"><i class="material-icons">settings</i></h2>
+                            <h2 class="center red-text darken-4"><i class="material-icons">settings</i></h2>
                             <h5 class="center">Gestion personalizada</h5>
 
                             <p class="light">¿Quieres un estilo concreto de musica? De forma intuitiva podrás elegir la mejor opción</p>
@@ -95,7 +93,7 @@ include("loginserv.php");
                 </div>
             </div>
             <div class="parallax">
-                <img src="assets/images/drum.jpg" /></div>
+                <img src="assets/images/parallax3.jpg" /></div>
         </div>
 
         <div class="container">
@@ -124,7 +122,7 @@ include("loginserv.php");
                 <img src="assets/images/music_black_guitar_wallpaper.jpg" height="1080" width="1920"/></div>
         </div>
 
-        <footer class="page-footer teal darken-3" >
+        <footer class="page-footer footer teal darken-3" >
             <div class="container ">
                 <div class="row">
                     <div class="col l6 s12 ">
@@ -145,7 +143,7 @@ include("loginserv.php");
                     <div class="col l3 s12 ">
                         <h5 class="black-text">Suscribete a nuestro boletin</h5> 
                         <input type='text' placeholder="email para suscribirse"/>
-                        <button class='btn lighten-3' type="submit">Enviar</button>
+                        <button class='btn blue-grey' type="submit">Enviar</button>
                     </div>
                 </div>
             </div>

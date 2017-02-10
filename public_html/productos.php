@@ -78,7 +78,7 @@ include("loginserv.php");
             </div>
         </div>
      
-        <footer class="page-footer teal darken-3" >
+        <footer class="page-footer footer teal darken-3" >
             <div class="container ">
                 <div class="row">
                     <div class="col l6 s12 ">
@@ -99,7 +99,7 @@ include("loginserv.php");
                     <div class="col l3 s12 ">
                         <h5 class="black-text">Suscribete a nuestro boletin</h5> 
                         <input type='text' placeholder="email para suscribirse"/>
-                        <button class='btn lighten-3' type="submit">Enviar</button>
+                        <button class='btn blue-grey' type="submit">Enviar</button>
                     </div>
                 </div>
             </div>
