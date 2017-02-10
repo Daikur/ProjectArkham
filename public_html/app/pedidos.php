@@ -17,22 +17,28 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "select id from userpass where user = $usuario;";
-$idUsuario = $conn->query($sql);
+$sqlUsuario = "select id from userpass where user = $usuario;";
+$resultado = $conn->query($sqlUsuario);
+//$filaUsuario = $resultado->fetch_assoc();
+//
+//$idUsuario=$filaUsuario["id"];
 
 
-$sql = "INSERT INTO Pedidos (idCliente, fecha) VALUES ($idUsuario,$fecha);";
+$sql = "INSERT INTO Pedidos (idCliente, fecha) VALUES ('$resultado',$fecha);";
 if ($conn->query($sql) === TRUE) {
     echo "Su pedido ha sido procesado.";
 } else {
     echo "Error al procesar su pedido.";
 }
 
-$peticionIdPedido = "SELECT MAX(idPedido) from pedidos";
-$idPedido = $conn->query($peticionIdPedido);
+$peticionIdPedido = "SELECT MAX(idPedido) as id from pedidos";
+$result = $conn->query($peticionIdPedido);
 
-//$idPed = inval($idPedido,10);
-//$idPedido = $idPedido + 1;
+$fila = $result->fetch_assoc();
+
+$idPedido=$fila["id"];
+
+
 
 $seguir = true;
 foreach ($listaProductos as $producto) {
@@ -43,10 +49,10 @@ foreach ($listaProductos as $producto) {
     if ($conn->query($sql) === TRUE) {
         $resultado = "Su detallepedido ha sido procesado.";
     } else {
-        $resultado = "Error al procesar su detallepedido.";
-        $sql = "DELETE From pedidos where idPedido=$idPedido";
-        $conn->query($sql);
-        $seguir = false;
+//        $resultado = "Error al procesar su detallepedido.";
+//        $sql = "DELETE From pedidos where idPedido=$idPedido";
+//        $conn->query($sql);
+//        $seguir = false;
     }
 }
 echo json_encode($resultado);
