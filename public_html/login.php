@@ -2,6 +2,7 @@
 include("loginserv.php");
 
 
+
 ?>
 
 
@@ -44,7 +45,7 @@ include("loginserv.php");
                                 </div>
                                 <div class="row">
                                     <div class="input-field col s12">
-                                        <input id="pass" name="pass" password="password" type="text" class="validate">
+                                        <input id="pass" name="pass" password="password" type="password" class="validate">
                                         <label for="password"><i class="tiny material-icons prefix">lock</i><span class="login-input">Contraseña</span></label>
                                     </div>
                                 </div>
