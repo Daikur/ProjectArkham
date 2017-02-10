@@ -11,7 +11,7 @@ include("loginserv.php");
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <title>Armonic</title>
         <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="vendor/materialize/css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/materialize/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
@@ -78,7 +78,7 @@ include("loginserv.php");
             </div>
         </div>
      
-        <footer class="page-footer teal darken-3" >
+        <footer class="page-footer footer teal darken-3" >
             <div class="container ">
                 <div class="row">
                     <div class="col l6 s12 ">
@@ -99,7 +99,7 @@ include("loginserv.php");
                     <div class="col l3 s12 ">
                         <h5 class="black-text">Suscribete a nuestro boletin</h5> 
                         <input type='text' placeholder="email para suscribirse"/>
-                        <button class='btn lighten-3' type="submit">Enviar</button>
+                        <button class='btn blue-grey' type="submit">Enviar</button>
                     </div>
                 </div>
             </div>

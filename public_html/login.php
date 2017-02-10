@@ -12,14 +12,14 @@ include("loginserv.php");
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <title>Armonic</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="vendor/materialize/css/materialize.min.css" rel="stylesheet" type="text/css"/>
         <link href="vendor/materialize/css/style.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/main.css" rel="stylesheet" type="text/css"/>
         <link href="assets/css/login.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="container-fluid card-container red darken-3">
+        <div class="container-fluid card-container login-background">
             <div class="row ">
                 <div>
                     <div class="col s12 m4 offset-m4">
