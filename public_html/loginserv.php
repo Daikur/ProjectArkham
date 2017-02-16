@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-
 $error=' '; //variable para recoger los errores
 if(isset($_POST['submit'])){
     if(empty($_POST['user']) || empty($_POST['pass'])){
@@ -24,7 +22,7 @@ if(isset($_POST['submit'])){
         }
         else{
             $error = "username or password is invalid";
-            $_SESSION['username'] = 'invitado';
+            $_SESSION['username'] = null;
         }
         mysqli_close($conn);
     }
