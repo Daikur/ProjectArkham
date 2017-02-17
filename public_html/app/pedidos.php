@@ -31,7 +31,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error al procesar su pedido.";
 }
 
-$peticionIdPedido = "SELECT MAX(idPedido) as id from pedidos";
+$peticionIdPedido = "SELECT MAX(id) as id from pedidos";
 $result = $conn->query($peticionIdPedido);
 
 $fila = $result->fetch_assoc();
@@ -45,7 +45,7 @@ foreach ($listaProductos as $producto) {
     $idProducto = $producto->id;
     $Fecha = $producto->fecha;
     $Precio = $producto->precio;
-    $sql = "INSERT INTO detallepedidos (idPedido, idProducto ,precio, Fecha) VALUES ($idPedido, $idProducto, $Precio, $fecha)";
+    $sql = "INSERT INTO detallepedidos (id, idProducto ,precio, Fecha) VALUES ($idPedido, $idProducto, $Precio, $fecha)";
     if ($conn->query($sql) === TRUE) {
         $resultado = "Su detallepedido ha sido procesado.";
     } else {

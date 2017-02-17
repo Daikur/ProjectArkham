@@ -115,9 +115,10 @@ function cargaModal(p) {
     myNode.innerHTML = '';
 
     $(`<div class="modal-content">
+    
       <h4>` + producto.nombre + `</h4>
-      <p>A bunch of text</p>
-      <p>Seleccione una fecha: </p><input type="date" class="datepicker">
+      <p>`+ producto.descripcion +`</p>
+      <p>Seleccione una fecha: </p><input id="fecha`+producto.nombre+`" type="text" placeholder="yyyy-mm-dd" name="fecha">
       <p>Precio: ` + producto.precio + `</p>
     </div>
     <div class="modal-footer">
@@ -125,11 +126,9 @@ function cargaModal(p) {
       <a id="botonCompra" href='#modal-carrito' class='modal-action modal-close waves-effect waves-green btn-flat' onclick=carrito.anyade(this) >Añadir al Carrito</a>
     </div>
   </div>`).appendTo('#modal-compra');
-    producto.fecha = "0000-00-00";
+    producto.fecha = $("#fecha"+producto.nombre).val();
+    console.log(producto.fecha);
     $('#botonCompra').data('producto', producto);
 }
 
-$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15 // Creates a dropdown of 15 years to control year
-});
+
